@@ -1,0 +1,77 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local ShadowFrame = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local ShadowFrame_2 = Instance.new("Frame")
+local UICorner_2 = Instance.new("UICorner")
+local MainFrame = Instance.new("Frame")
+local UICorner_3 = Instance.new("UICorner")
+
+--Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+ShadowFrame.Name = "ShadowFrame"
+ShadowFrame.Parent = ScreenGui
+ShadowFrame.BackgroundColor3 = Color3.fromRGB(53, 53, 53)
+ShadowFrame.BackgroundTransparency = 0.850
+ShadowFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ShadowFrame.Position = UDim2.new(-0.0248925425, 0, 0.296482414, 0)
+ShadowFrame.Size = UDim2.new(0, 695, 0, 441)
+
+UICorner.Parent = ShadowFrame
+
+ShadowFrame_2.Name = "ShadowFrame"
+ShadowFrame_2.Parent = ScreenGui
+ShadowFrame_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ShadowFrame_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ShadowFrame_2.Position = UDim2.new(0.0470772497, 0, 0.369196445, 0)
+ShadowFrame_2.Size = UDim2.new(0, 507, 0, 326)
+
+UICorner_2.Parent = ShadowFrame_2
+
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = ScreenGui
+MainFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+MainFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+MainFrame.BorderSizePixel = 0
+MainFrame.Position = UDim2.new(0.0482423604, 0, 0.368448675, 0)
+MainFrame.Size = UDim2.new(0, 504, 0, 323)
+
+UICorner_3.Parent = MainFrame
+
+-- Scripts:
+
+local function KPMX_fake_script() -- ShadowFrame_2.LocalScript 
+	local script = Instance.new('LocalScript', ShadowFrame_2)
+
+	local uiStroke = script.Parent:FindFirstChildOfClass("UIStroke")
+	if not uiStroke then
+		warn("No se encontró UIStroke en el Frame")
+		return
+	end
+	
+	uiStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+	
+	local TweenService = game:GetService("TweenService")
+	
+	local brightRed = Color3.fromRGB(255, 0, 0)  -- rojo brillante
+	local darkRed = Color3.fromRGB(150, 0, 0)    -- rojo oscuro
+	
+	while true do
+		local tweenToDark = TweenService:Create(uiStroke, TweenInfo.new(1.5), {Color = darkRed})
+		tweenToDark:Play()
+		tweenToDark.Completed:Wait()
+	
+		local tweenToBright = TweenService:Create(uiStroke, TweenInfo.new(1.5), {Color = brightRed})
+		tweenToBright:Play()
+		tweenToBright.Completed:Wait()
+	end
+	
+end
+coroutine.wrap(KPMX_fake_script)()
